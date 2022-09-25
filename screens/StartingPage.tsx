@@ -7,21 +7,21 @@ interface Props {
 }
 
 export default function StartingPage({numberSetter}: Props) {
-  const [number, setNumber] = useState();
+  const [number, setNumber] = useState<number | null>();
 
   const resetInput = () => {
-    setNumber('')
-  }
+    setNumber('');
+  };
 
   const confirmHandler = () => {
     if (isNaN(number) || number <= 0 || number > 99) {
       Alert.alert(
         'Invalid number!',
         'Number has to be number between 1 and 99.',
-        [{text: 'Okay', style: 'destructive', onPress: resetInput}]
-      )
+        [{text: 'Okay', style: 'destructive', onPress: resetInput}],
+      );
     } else {
-      numberSetter(number); 
+      numberSetter(number);
     }
   };
 
@@ -35,7 +35,7 @@ export default function StartingPage({numberSetter}: Props) {
           autoCapitalize="none"
           autoCorrect={false}
           value={number}
-          onChangeText={(value) => {
+          onChangeText={value => {
             setNumber(parseInt(value));
           }}></TextInput>
       </View>

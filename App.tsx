@@ -1,23 +1,32 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  SafeAreaView,
+} from 'react-native';
 import StartingPage from './screens/StartingPage';
-import LinearGradient from 'react-native-linear-gradient';
+import GameScreen from './screens/GameScreen';
 
 const App = () => {
-  const [number, setNumber] = useState();
+  const [number, setNumber] = useState<number | null>();
 
-  const numberSetter = (num) => {
+  const numberSetter = (num:number) => {
     setNumber(num);
-  }
+  };
 
   return (
     <View style={styles.mainContainer}>
       <ImageBackground
         imageStyle={styles.backgroundImage}
         source={require('./assets/background.png')}
-        resizeMode='cover'
+        resizeMode="cover"
         style={{flex: 1}}>
-        {!number && <StartingPage numberSetter={numberSetter}></StartingPage>}
+        <SafeAreaView style={{flex: 1}}>
+          {!number && <StartingPage numberSetter={numberSetter}></StartingPage>}
+          {number && <GameScreen mainNumber={number}></GameScreen>}
+        </SafeAreaView>
       </ImageBackground>
     </View>
   );
@@ -29,7 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ddb52f',
   },
   backgroundImage: {
-    opacity: 0.5
+    opacity: 0.3,
   },
 });
 

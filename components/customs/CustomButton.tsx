@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, Pressable} from 'react-native';
 interface Props {
   text: string;
   textColor?: string;
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 export default function CustomButton({text, textColor, onPress}: Props) {
